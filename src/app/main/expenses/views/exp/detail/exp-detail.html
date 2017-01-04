@@ -1,0 +1,78 @@
+<div class="compact" layout="row">
+    <div class="expense-container" ms-scroll>
+
+        <!-- EXPENSE -->
+        <div class="card">
+            <div class="header">
+
+            </div>
+
+            <div class="content">
+                <div class="main" layout layout-align="center center">
+                    <div class="image" layout layout-align="center center" flex>
+                        <div layout layout-align="center center" style="background: #f9f9f9; border: 1px dashed #ddd; min-height: 500px; width: 500px;">
+                            <img style="width: 80%; height:80%;" ng-src="http://vhezcqmj.dev12thdoor.duoworld.com/apis/media/tenant/twelthdoor/{{vm.expenseForUniquekey.uploadImage[0].uniqueCode}}"/>
+                        </div>
+                    </div>
+                    <div class="details" layout layout-align="center center" flex>
+                        <div class="label" layout="column" layout-align="start start" flex>
+                            <div class="title" flex>Expense No</div>
+                            <div class="title" flex>Expense Date</div>
+                            <div class="title" flex>Category</div>
+                            <div class="title" flex>Description</div>
+                            <div class="title" flex>Amount</div>
+                            <div class="title" flex>Tax</div>
+                            <div class="title" flex>Supplier</div>
+                            <div class="title" flex>Reference</div>
+                            <div class="title" flex>Status</div>
+                            <div class="title" flex>Due Date</div>
+                            <div class="title" flex>Assign To</div>
+                            <div class="title" flex>Billable</div>
+                            <div class="title" flex layout="row" layout-wrap flex>
+                                <div layout layout-sm="row" layout-wrap>
+                                    <div>
+                                        Tags
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="label" layout="column" layout-align="start start" flex>
+                            <div class="title" flex>{{vm.expenseForUniquekey.expenseID}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.date | date}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.category}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.description}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.amount}}</div>
+                            <div class="title" flex>vatAmount {{vm.expenseForUniquekey.expense.tax.taxName}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.vendor}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.reference}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.status}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.dueDate | date }}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.assignCustomer}}</div>
+                            <div class="title" flex>{{vm.expenseForUniquekey.billable}}</div>
+                            <div class="title" layout="row" layout-wrap flex>
+                                <div layout layout-sm="row" layout-wrap>
+                                    <div ng-repeat="item in vm.expenseForUniquekey.tags" style="background: #fff; border-radius:2px; border: 1px solid rgba(0,0,0,0.25); box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);" flex>
+                                        {{item}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="footer">
+            </div>
+        </div>
+        <!-- / EXPENSE -->
+
+        <!-- Use the following element to add breaks to your pages -->
+        <!-- This will make sure that the section after this element will be printed on a new page -->
+        <!-- <div class="page-break"></div> -->
+
+    </div>
+</div>

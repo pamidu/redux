@@ -1,0 +1,73 @@
+<md-dialog class="customDialogBox" aria-label="Mango (Fruit)" style="width:800px;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Custom fields for payment</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent pad_32">
+		<form style="width:100%;">
+			<md-content flex>
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container flex="30">
+						<label>Select Field Type</label>
+						<md-select name="type" ng-model="vm.type">
+							<md-option value="textBox">Text box</md-option>
+							<md-option value="selectBox">select box</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+
+				<div layout layout-sm="column" layout-margin ng-show="vm.type=='selectBox'" >
+					<div layout="row" flex layout-margin>
+						<md-input-container flex>
+							<label>title to be shown</label>
+							<input name="labelShown" ng-model="vm.labelShown" type="text">
+						</md-input-container>
+						<div flex>
+							<md-chips ng-model="vm.fields" readonly="false" placeholder="Enter more" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Fields">
+							</md-chips>
+							<input type="hidden" ng-model="company.input[i].id" ng-init="company.input[i].id=i">
+						</div>
+					</div>
+					<div flex="20" layout="row" layout-align="center center" style="font-size:13px;margin-top:-11px;">
+						<md-checkbox ng-model="checkShowPdf" aria-label="Checkbox 1">Show on PDF</md-checkbox>
+					</div>
+				</div>
+
+				<div layout layout-sm="column" layout-margin ng-show="vm.type=='textBox'">
+					<md-input-container flex>
+						<label>label to be shown</label>
+						<input name="labelShown" ng-model="vm.labelShown" type="text">
+					</md-input-container>
+
+					<md-input-container flex>
+						<label>Type</label>
+						<md-select ng-model="vm.inputType">
+							<md-option value="number">Numbers</md-option>
+							<md-option value="text">Text</md-option>
+							<md-option value="email">Email</md-option>
+						</md-select>
+					</md-input-container>
+					<!-- <input type="hidden" ng-model="company.input[i].id" ng-init="company.input[i].id=i"> -->
+					<div flex="20" flex-sm="30" layout="row" layout-align="start center" style="font-size:12px;">
+						<md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">Show on PDF</md-checkbox>
+					</div>
+				</div>
+
+			</md-content>
+		</form>
+	</div>
+	<div class="dialogFooter pad_16" layout="row">
+		<span flex></span>
+		<md-button class="md-primary md-hue-3" ng-click="vm.cancel()" style="margin-right:20px;" >
+			Cancel
+		</md-button>
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="">
+			Add
+		</md-button>
+	</div>
+</md-dialog>

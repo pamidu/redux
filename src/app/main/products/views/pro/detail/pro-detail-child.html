@@ -1,0 +1,174 @@
+    <!-- Product -->
+    <div class="card" flex id="pdfView">
+        <div ng-show="vm.detailProgress" class="detailProgress" layout="column" layout-align="center center" >
+            <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+            <div>Loading ...</div>
+        </div>
+        <div class="pro-header" layout="row"  layout-align="space-between center">
+            <div  layout="column" class="product-name">{{vm.fullProduct.productName}}</div> 
+            <div  layout="column">
+                <md-switch class="md-primary" ng-model="vm.proStatus" aria-label="proStatus" ng-change="vm.changeStatus()"> 
+                </md-switch>
+                 <md-tooltip><span>{{vm.fullProduct.status}}</span></md-tooltip>
+            </div>
+        </div>
+
+        
+        <!-- CONTENT -->
+        <md-content class="content" flex>                
+            <div layout="row" flex layout-sm="column" class="mainContent">
+                <div layout="column" flex  class="columnOne">
+                    <!-- <uploader flex label="Upload an image" upload-type="image" file-type="single" img-height="400" 
+                    ng-if="vm.fullProduct.uploadImages.length == 0">
+                    </uploader> -->
+                   
+                    <img ng-if="vm.fullProduct.uploadImages.length > 0" id="pro-image"  class="img-content" 
+                        ng-src="{{vm.imageCode}}"  
+                        >
+                    <img  src="app/main/products/img/default.jpg" id="pro-image"  class="img-content" 
+                       ng-if="vm.fullProduct.uploadImages.length == 0" 
+                        >
+                </div>
+                <div flex="5"></div>
+                <div layout="column" flex class="columnTwo">
+                    <div flex layout="row">                        
+                        {{vm.fullProduct.description}}
+                    </div>
+
+                    <div layout="row" flex="10" flex-sm="10"></div>
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+
+                    <div flex layout="row" class="header-section">    
+                        <div flex flex-sm layout="column" layout-align="start end" class="header-title">
+                            PRODUCT CODE
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.productCode}}
+                        </div> 
+                        <div flex-sm="35"></div>       
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            DEFAULT UOM
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">        
+                            {{vm.fullProduct.productUnit}}
+                        </div> 
+                        <div flex-sm="35"></div>             
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            PRICE (WITHOUT TAX)
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.productPrice |currency :""}}
+                        </div>   
+                        <div flex-sm="35"></div>           
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            TAX
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.productTax.taxName}}
+                        </div>   
+                        <div flex-sm="35"></div>           
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            COST
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.costPrice}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            BRAND
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.brand}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                        
+                            CATEGORY
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.productCategory}}
+                        </div>  
+                        <div flex-sm="35"></div>            
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">                                       
+                            TRACK INVENTORY
+                        </div>  
+                        <div flex="10" flex-sm="5" ></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.inventory}}
+                        </div>    
+                        <div flex-sm="35"></div>          
+                    </div>
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start end" class="header-title">
+                            STOCK
+                        </div>  
+                        <div flex="10" flex-sm="5"></div>       
+                        <div flex layout="column">                                        
+                            {{vm.fullProduct.quantity}}
+                        </div>  
+                        <div flex-sm="35"></div>            
+                    </div>
+                    <div flex="10"  flex-sm="10"></div>                    
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+
+                    <div flex layout="row" class="header-section">    
+                        <div flex layout="column" layout-align="start center" class="brochure-btn" layout-align-sm="start start">
+                            <!-- <md-button class="md-primary btn" ng-if="vm.fullProduct.uploadBrochure.length == 0" >
+                                <md-icon md-font-icon="icon-file-image"></md-icon>
+                                Upload Brochure
+                            </md-button> -->
+                            <md-button class="md-primary btn" ng-if="vm.fullProduct.uploadBrochure.length > 0" ng-click="vm.viewBrochure()">
+                                <md-icon md-font-icon="icon-file-image"></md-icon>
+                                View Brochure
+                            </md-button>
+                        </div>  
+                        <div flex-sm="35"></div>               
+                    </div>
+                    <div layout="row" style="height:30px;" hide-gt-sm></div>
+                </div>
+            </div>
+            <div layout="row" class="tag-content">
+                <div layout="column" class="main">                    
+                    <div layout="row" class="tag-header">
+                        TAGS
+                    </div>
+                    <div layout="row" class="tag-items">
+                        <span ng-repeat="item in vm.fullProduct.tags" >
+                            {{item}} &nbsp; <!-- spaces-->
+                        </span>                      
+                    </div>
+                </div>
+            </div>
+ 
+        </md-content>
+        <!-- / CONTENT -->
+
+        <div class="footer">
+            <div class="note" layout="column" layout-align="start start"> 
+            </div>
+            <div layout="row" layout-align="start start">
+                
+            </div>
+        </div>
+    </div>
+    <!-- / Product -->

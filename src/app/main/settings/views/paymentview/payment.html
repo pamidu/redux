@@ -1,0 +1,67 @@
+<div class="toolbar" layout="row" layout-align="start center">
+	<md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('settingsidenav')" hide-gt-md aria-label="Toggle left sidenav">
+		<md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+	</md-button>
+	<h1>Payments Settings</h1>
+</div>
+<div id="setting" class="contentsection">
+	<md-content class="paymentContent" flex style="overflow-x: hidden;">
+		<div layout layout-align="start center" style="background-color:#f6f6f6; height:45px;width:100%;">
+			<div style="margin-left:18px; font-weight: 500;" >
+				Payment Gateways
+			</div>
+		</div>
+        <div layout="column" layout-align="center center" ng-if="!vm.Settings12thdoor.payments">
+            <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+            <div>Loading Payment Gateways...</div>
+        </div>
+		<div class="paymentWrap" layout="row" layout-wrap>
+			<div class="paymentWrapSub" layout layout-sm="row" layout-margin layout-wrap layout-align="center center">
+				<md-card  class="onlinePay" ng-repeat="onlinePay in vm.Settings12thdoor.payments" style="">
+					<div class="SearchCard">
+						<div id="{{onlinePay.name}}" ng-class="{'tintImage': onlinePay.activate == true}"></div>
+						<div >
+							<img ng-src="/assets/payment/{{onlinePay.name}}.png" class="md-card-image" alt="Washed Out">
+						</div>
+					</div>
+					<md-divider></md-divider>
+					<div class="md-actions" layout="row" layout-align="center center" flex>
+						<div layout="row" layout-align="end center">
+							<md-button class="md-primary" style="font-size:12px;" ng-click="vm.activepayment(onlinePay)">{{onlinePay.label}}</md-button>
+						</div>
+                        <div layout="row" layout-align="end center">
+<!--
+                        <div>
+							<md-button class="md-icon-button" ng-click="vm.saveConfig(onlinePay, $event)">
+								<md-icon md-font-icon="icon-pencil"></md-icon>
+							</md-button>
+						</div>
+-->
+                            <md-menu md-position-mode="target-right target" layout="row" layout-align="end center">
+                                <md-button href aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+                                    <md-icon md-font-icon="icon-dots-vertical" ></md-icon>
+                                </md-button>
+                                <md-menu-content width="2">
+                                    <md-menu-item>
+                                        <md-button ng-click="vm.registerOlinePayment(onlinePay)" ng-disabled="vm.registerbtnDisabled">
+                                            <p>Register</p>
+                                            <md-icon md-menu-align-target ></md-icon>
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="vm.rejectOnlinePayment(onlinePay, $index)" ng-disabled="vm.rejectbtnDisabled">
+                                            <p>Reject</p>
+                                            <md-icon md-menu-align-target ></md-icon>
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+					
+
+					</div>
+				</md-card>
+			</div>
+		</div>
+	</md-content>
+</div>

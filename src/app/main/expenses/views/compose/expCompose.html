@@ -1,0 +1,185 @@
+<div id="expense" class="page-layout carded left-sidenav" layout="row">
+
+	<!-- CENTER -->
+	<div class="center" layout="column" flex>
+
+		<!-- CONTENT-CARD -->
+		<div class="content-card" layout="column" flex>
+
+			<!-- PRIMARY TOOLBAR -->
+			<div class="toolbar" layout="row" layout-align="space-between center">
+				<div layout="row" layout-align="start center">
+					<md-button class="md-icon-button close-thread" aria-label="Back"
+					ng-click="vm.toggleChildStates('app.expenses')">
+					<md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+				</md-button>
+
+				<div class="divider-vertical"></div>
+
+				<h2>Compose New Expense</h2>
+			</div>
+			<div layout="row" layout-align="start center">
+
+			</div>
+		</div>
+		<!-- /PRIMARY TOOLBAR -->
+		<!-- WRAPPER -->
+		<div class="compose" layout="column">
+			<div class="mainsection" layout="column" layout-align="start start" ms-scroll>
+				<div class="info" layout="column" layout-align="start start">
+					<div class="formWrapper" style="min-width:100%;">
+						<div layout layout-align="start center" style="background-color:#f6f6f6; height:45px;width:100%;">
+							<div style="margin-left:34px;">
+								Expense Details
+							</div>
+						</div>
+						<div class="maininfosection" layout="row" layout-align="start start">
+							<div class="expenseinfo" flex>
+								<div layout="row" layout-gt-sm="row" style="height:64px;">
+									<md-datepicker ng-model="date" md-placeholder="Date" flex></md-datepicker>
+									<md-autocomplete flex md-input-name="autocompleteField"
+									md-no-cache="noCache" 
+									md-selected-item="selectedItemSupplier" 
+									md-search-text="vm.searchTextSupplier"
+									md-items="item in vm.querySearchSupplier(vm.searchTextSupplier)" 
+									md-item-text="item.display" 
+									md-floating-label="Supplier (Optional)" style="margin-top: -16px;">
+									<md-item-template>                   
+										<span  md-highlight-text="searchTextSupplier">{{item.display}}</span>  
+									</md-item-template>
+								</md-autocomplete>
+							</div>
+							<div layout="column" layout-gt-xs="row">
+								<md-input-container flex>
+									<label>Description</label>
+									<input name="" ng-model="vm.expense.description">
+								</md-input-container>
+							</div>
+							<div layout="column" layout-gt-xs="row">
+								<md-input-container flex>
+									<label>Category</label>
+									<md-select ng-model="vm.expense.category">
+										<md-option ng-repeat="cat in vm.CategoryArray" value="{{cat}}">
+											{{cat}}
+										</md-option>
+									</md-select>
+								</md-input-container>
+								<md-input-container flex>
+									<label>Reference No</label>
+									<input name="" ng-model="vm.expense.reference">
+								</md-input-container>
+							</div>
+
+							<div layout="column" layout-gt-xs="row">
+								<md-input-container flex>
+									<label>Amount</label>
+									<input name="" ng-model="vm.expense.amount" ng-keyup="vm.finalAmount(vm.expense)">
+								</md-input-container>
+								<md-input-container flex>
+									<label>Tax</label>
+									<md-select ng-model="vm.expense.tax" ng-model-options="{trackBy: '$value.taxID'}" ng-change="vm.finalAmount(vm.expense)" >
+										<md-option ng-repeat="item in vm.taxesArr" ng-value="item" value="{{item}}" >
+											{{item.taxName}}
+										</md-option>
+									</md-select>
+
+								</md-input-container>
+							</div>
+
+							<div layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;">
+								<div layout="row" layout-align="end center" flex>	
+									<div>Total {{vm.currency}} {{vm.totalText}}</div>
+								</div>
+								<div layout="row" layout-align="end center" flex>
+									<span>{{vm.totalUSD}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="formWrapper" style="min-width:100%;">
+					<div layout layout-align="start center" style="background-color:#f6f6f6; height:45px;width:100%;">
+						<div style="margin-left:34px;">
+							Optional Details
+						</div>
+					</div>
+					<div class="maininfosection" layout="row" layout-align="start start">
+						<div class="expenseinfo" flex>
+							<div layout="column" layout-gt-xs="row">
+								<md-input-container flex>
+									<label>Status</label>
+									<md-select ng-model="vm.expense.status">
+										<md-optgroup label="Status">
+											<md-option value="Paid" selected>Paid</md-option>
+											<md-option value="Unpaid">Unpaid</md-option>
+										</md-select>
+									</md-select>
+								</md-input-container>
+								<md-datepicker style="margin-top: 13px;" ng-model="duedate" md-placeholder="Due Date" flex></md-datepicker>
+							</div>
+
+							<div layout="column" layout-gt-xs="row">
+								<md-input-container flex>
+									<label>Assign to Customer or Project</label>
+									<input name="PO no" ng-model="vm.basicForm.postalCode">
+								</md-input-container>
+								<md-input-container flex>
+									<label>Billable</label>
+									<md-select ng-model="vm.basicForm.state">
+										<md-option ng-repeat="state in vm.states" value="{{state.abbrev}}">
+											{{state.abbrev}}
+										</md-option>
+									</md-select>
+								</md-input-container>
+							</div>
+
+							<div layout="column" layout-gt-xs="row">
+								<md-chips ng-model="vm.expense.tags" name="" readonly=false
+								md-removable="removable" md-max-chips="5" placeholder="+Tags">
+								<md-chip-template>
+									<strong>{{$chip}}</strong>
+								</md-chip-template>
+							</md-chips>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="formWrapper" style="min-width:100%;">
+				<div layout layout-align="start center" style="background-color:#f6f6f6; height:45px;width:100%;">
+					<div style="margin-left:34px;">
+						Custom Fields
+					</div>
+				</div>
+				<div class="maininfosection" layout="row" layout-align="start start">
+					<div class="expenseinfo" flex>
+						custom fields.............
+					</div>
+				</div>
+			</div>
+			<div class="formWrapper" style="min-width:100%;">
+				<div layout layout-align="start center" style="background-color:#f6f6f6; height:45px;width:100%;">
+					<div style="margin-left:34px;">
+						Upload Expense Summery
+					</div>
+				</div>
+				<div class="maininfosection" layout="row" layout-align="start start">
+					<div class="expenseinfo" flex>
+						upload.............
+					</div>
+				</div>
+			</div>
+		</div>
+					<!-- <div class="notes">notes section</div>
+					<div class="optional">optional section</div> -->
+				</div>
+				<div class="footersection" layout="row" layout-align="end center">
+					<md-button class="md-primary" style="border:2px solid">cancel</md-button>
+					<md-button class="md-accent" style="border:2px solid">save</md-button>
+				</div>
+			</div>
+			<!-- /WRAPPER -->
+		</div>
+		<!-- /CONTENT-CARD-->
+	</div>
+	<!-- /CENTER -->
+</div>

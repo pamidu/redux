@@ -1,0 +1,58 @@
+<!-- (UI/UX) Meaningfull empty state - start -->
+
+<div class="empty-items" ng-if="vm.productSummary.length === 0">There are no Products in '{{vm.currentFilter.filter}}'!</div>
+<div class="loading-items" layout="column" layout-align="center center" ng-if="!vm.productSummary">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="64"></md-progress-circular>
+    <div>Loading Products...</div>
+</div>
+
+<!-- (UI/UX) Meaningfull empty state - end -->
+
+<!-- empty states ui handler - start -->
+<div class="pro-item {{item.status}}" md-ink-ripple 
+     ng-repeat="item in vm.productSummary | filter: global.search"
+     ng-click="vm.openItem(item)"
+     ng-class="{'unviewd': !item.read, 'current-item': vm.currentThread === item, 'selected': vm.isSelected(item)}"
+     ng-if="!item.deleteStatus">
+
+    <div layout="row" layout-align="start center">
+ 
+        <div class="cygil">
+            <div class="avatar" 
+                ng-click="vm.imagePannel(item.uploadImages[0].uniqueCode)"
+                ng-mouseleave="vm.closeImgPanel()" 
+                style="margin-left:8px;">
+                <img err-src="app/main/products/img/default.jpg" ng-src="{{vm.hostUrl}}/apis/media/tenant/twelthdoor/{{item.uploadImages[0].uniqueCode}}" 
+                 style="height: 40px;border-radius: 69px;">
+            </div>
+        </div>
+
+        <div class="info" flex layout="column">
+           
+
+            <div class="secondaryInfo" layout="row" layout-align="start center">
+                <span class="text-truncate">Product Name : {{item.productName}}</span>
+                <div class="divider-vertical"></div>
+                <span class="text-truncate">Product Code : {{item.productCode}}</span> 
+            </div>
+
+        </div>
+
+        <div class="status" layout="column" layout-align="center end">
+            <span class="text-truncate">{{item.productPrice | currency:"" }}</span>
+            <div class="proStatus {{item.status}}" layout="row" layout-align="start center">
+                <div class="status-circle"></div>
+                <div class="status-label">{{item.status}}</div>
+            </div>
+        </div>
+
+        <div layout="column" layout-align="space-between end">
+            <md-button class="md-icon-button" ng-click="vm.toggleThreadStatus('starred', item, $event)"
+                       aria-label="Toggle starred">
+                <md-icon ng-if="item.favouriteStar" md-font-icon="icon-star"
+                         class="amber-fg"></md-icon>
+                <md-icon ng-if="!item.favouriteStar" md-font-icon="icon-star-outline"></md-icon>
+            </md-button>
+        </div>
+    </div>
+</div>

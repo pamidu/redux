@@ -1,0 +1,233 @@
+#Payment {
+
+    .center {
+
+        .content-card {
+            min-height: 100%;
+
+            .content-wrapper {
+
+                .compact {
+                    padding: 0;
+                    overflow: auto;
+
+                    .payment-container {
+                        width:100%;
+                        height:auto;
+
+                        .detail-wrapper {
+                            width: 100%;
+                            min-width: 100%;
+                            max-width: 100%;
+                            overflow: hidden;
+                            background: #FFFFFF;
+
+                            .detail-header {
+                                height:auto;
+                                min-height:300px;
+
+                                .ids {
+                                    line-height: 22px;
+                                    color: rgba(0, 0, 0, 0.54);
+
+                                    .detail {
+                                        width: 160px;
+                                    }
+
+                                    .seller {
+                                        margin-bottom: 48px;
+
+                                        .logo {
+                                            width: 156px;
+                                            height: 156px;
+                                            font-size: 115px;
+                                        }
+                                    }
+
+                                    .client {
+
+                                        .logo {
+                                            width: 156px;
+                                            height: 156px;
+                                            font-size: 115px;
+                                        }
+                                    }
+
+                                    .divider {
+                                        width: 1px;
+                                        margin: 0 48px;
+                                        background-color: rgba(0, 0, 0, 0.12);
+                                        height: 144px;
+                                    }
+                                }
+
+                                .summary {
+                                    font-size: 15px;
+
+                                    .tableSpacer{
+                                        height:78px; 
+                                    }
+
+                                    .label {
+                                        color: rgba(0, 0, 0, 0.54);
+                                        text-align: right;
+                                        padding-right: 16px;
+
+                                        &.cellSpacer{
+                                            padding-top:8px;
+                                            padding-bottom:8px;
+                                        }
+                                    }
+
+                                    .value {
+                                        color: rgba(0, 0, 0, 1);
+
+                                        &.cellSpacer{
+                                            padding-top:8px;
+                                            padding-bottom:8px;
+                                        }
+                                    }
+
+                                    .code {
+                                        font-size: 35px;
+                                        font-weight: 300;
+
+                                        td {
+                                            padding-bottom: 32px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .detail-content {
+                                .invoice-table {
+                                    margin-top: 96px;
+                                    font-size: 15px;
+
+                                    .title {
+                                        font-size: 17px;
+                                    }
+
+                                    .detail {
+                                        margin-top: 8px;
+                                        font-size: 12px;
+                                        color: rgba(0, 0, 0, 0.54);
+                                        max-width: 360px;
+                                    }
+                                }
+
+                                .invoice-table-footer {
+                                    margin: 32px 0 32px 0;
+                                    padding-left:14px;
+                                    padding-right:14px;
+
+                                    tr {
+
+                                        td {
+                                            text-align: right;
+                                            font-size: 15px;
+                                            font-weight: 500;
+                                            color: rgba(0, 0, 0, 0.54);
+                                            border-bottom: none;
+                                            padding: 8px 8px;
+
+                                            &:first-child {
+                                                text-align: left;
+                                            }
+                                        }
+
+                                        &.balancedue {
+
+                                            td {
+                                                padding: 16px 8px;
+                                                border-top: 1px solid rgba(0, 0, 0, 0.12);
+                                                border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+                                                font-size: 24px;
+                                                font-weight: 500;
+                                                color: rgba(0, 0, 0, 1);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .smallHeader{
+                                    display:block; 
+                                    width:100%;
+                                    padding-left:18px;
+                                    height:48px;
+                                    line-height:48px;
+                                    font-weight:500;
+                                    font-size:16px;
+                                    color:rgba(0,0,0,0.5);
+                                    text-transform:uppercase;     
+                                }
+                            }
+
+                            .detail-footer {
+                                padding: 28px;
+                                padding-left: 55px;
+                                padding-right: 70px;
+                                color: rgba(0, 0, 0, 0.54);
+
+                                .footerSegments{
+                                    width:100%;
+
+                                    .segmentHeader{
+                                        display:block; 
+                                        width:100%;
+                                        padding-left:18px;
+                                        height:48px;
+                                        line-height:48px;
+                                        font-weight:500;
+                                        font-size:16px;
+                                        color:rgba(0,0,0,0.5);
+                                        text-transform:uppercase; 
+                                    }
+
+                                    .segmentContent{
+                                        padding:8px 18px;
+                                        font-weight:500;
+                                        font-size:14px;
+
+                                        .contactSegment:nth-child(2){
+                                            margin-left:30px;
+                                        }
+                                    }   
+                                }
+
+                                .note {
+                                    font-size: 15px;
+                                    font-weight: 500;
+                                    margin-bottom: 24px;
+                                }
+
+                                // IE10 fix
+                                .logo, .small-note {
+                                    -ms-flex: 0 1 auto;
+                                }
+
+                                .brandlogo {
+                                    width: 32px;
+                                    min-width: 32px;
+                                    height: 32px;
+                                    margin-right: 24px;
+                                }
+
+                                .small-note {
+                                    font-size: 12px;
+                                    font-weight: 500;
+                                    color: rgba(0, 0, 0, 0.54);
+                                    line-height: 18px;
+                                }
+                            }
+                        }     
+                    }
+                }
+            }
+        }
+    }
+}
+
+ .b{
+    color:black;
+ }

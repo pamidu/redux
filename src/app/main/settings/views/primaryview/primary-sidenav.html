@@ -1,0 +1,10 @@
+<div class="demo-sidenav">
+    <md-list>
+        <div ng-repeat="settingsNavItem in vm.settingsNavList">
+            <md-list-item ng-click="vm.navigateSettingsStates(settingsNavItem.navState)">
+                <p>{{settingsNavItem.navTitle}}</p>
+            </md-list-item>
+            <md-divider></md-divider>
+        </div>
+    </md-list>
+</div>

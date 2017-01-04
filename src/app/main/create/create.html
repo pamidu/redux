@@ -1,0 +1,87 @@
+<div id="create" class="page-layout carded left-sidenav" layout="row">
+
+    <!-- CENTER -->
+    <div class="center" layout="column" flex>
+    	<div class="page-layout carded left-sidenav" layout="row">
+			<div class="center" layout="column" flex>
+				<div class="content-card classic" layout="column" flex>
+					<div class="create" layout="column">
+						<div class="mainsection" layout="column" layout-align="start start" ms-scroll>
+							<div class="info" layout="column">
+								<div class="maininfosection" layout="row" layout-align="start start">
+									<div class="customerinfo" flex>
+										<md-input-container style="width:90%;">
+				                            <label>Customer Name</label>
+				                            <input name="Customer Name" ng-model="">
+				                        </md-input-container>
+				                        <div class="cutomeraddress" layout="column" layout-align="start center">
+				                        	<div class="addressheader" layout="row" layout-align="start center">	
+				                        		<span>Billing Address</span>
+				                        		<md-button class="md-icon-button md-primary" aria-label="Switch Address">
+											        <md-icon md-font-icon="icon-repeat"></md-icon>
+										     	</md-button>
+				                        	</div>
+				                        	<div class="addressinfo" layout="column" layout-align="start start">
+				                        		<span>No.32,</span>
+				                        		<span>Deanstone Place, Colombo - 3</span>
+				                        		<span>SriLanka</span>
+				                        	</div>
+				                        </div>
+									</div>
+									<div class="invoiceinfo" flex>
+										<div class="documentid" layout="row" layout-align="end center"><span>Invoice No : 2345</span></div>
+
+					                    <div layout="column" layout-gt-sm="row" style="height:64px;">
+				                            <md-datepicker ng-model="myDate" md-placeholder="Date" flex></md-datepicker>
+
+					                        <md-datepicker ng-model="myDate" md-placeholder="Due Date" flex></md-datepicker>
+
+					                    </div>
+
+					                    <div layout="column" layout-gt-xs="row">
+					                        <md-input-container flex>
+					                            <label>Payment terms</label>
+					                            <md-select ng-model="vm.basicForm.state">
+					                                <md-option ng-repeat="state in vm.states" value="{{state.abbrev}}">
+					                                    {{state.abbrev}}
+					                                </md-option>
+					                            </md-select>
+					                        </md-input-container>
+
+					                        <md-input-container flex>
+					                            <label>PO no</label>
+					                            <input name="PO no" ng-model="vm.basicForm.postalCode">
+					                        </md-input-container>
+					                    </div>
+
+					                    <md-input-container class="md-block">
+					                        <label>Comments</label>
+					                        <textarea ng-model="vm.basicForm.biography" md-maxlength="150" max-rows="3"></textarea>
+					                    </md-input-container>
+									</div>
+								</div>
+								<div class="lineitemsection">
+									
+								</div>
+							</div>
+							<div class="summary" layout="row" layout-align="end start">
+								<div class="totalVal" layout="column" layout-align="center center">
+									<i>Total</i>
+									<span>USD 0.00</span>
+								</div>
+							</div>
+							<!-- <div class="notes">notes section</div>
+							<div class="optional">optional section</div> -->
+							</div>
+						<div class="footersection" layout="row" layout-align="end center">
+							<md-button class="md-primary" style="border:2px solid">cancel</md-button>
+							<md-button class="md-accent" style="border:2px solid">save</md-button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <!-- / CENTER -->
+
+</div>

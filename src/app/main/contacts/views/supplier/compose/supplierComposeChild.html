@@ -1,0 +1,286 @@
+
+    <form name="supplierCompose" novalidate>
+		<div >
+		
+			<div class="optional" layout="row" layout-align="start start">
+				<div class="details">Supplier Name</div>
+			</div>
+      <div layout="column" class="contact-Details">  
+      <div  layout="row">
+        <div class="detailColOne" flex> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Company or Individual name</label>
+                <input ng-model="vm.supplier.profileName">
+              </md-input-container>
+          </div>  
+        
+        </div>
+      <div style="width: 5%"></div>
+        <div class="detailColTwo" flex>
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                 
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input ng-model="vm.supplier.email" name="email" ng-pattern="/^.+@.+\..+$/" required>
+            <div ng-messages="supplierCompose.email.$error" role="alert">
+                   <div ng-message-exp="['required','pattern']">
+                   Your email must look like an e-mail address.
+                   </div>
+                  </div>
+          </md-input-container>
+          </div>  
+         </div>  
+        </div>
+    </div>
+      <div class="optional" layout="row" layout-align="start start">
+          <div class="details">Contact Person</div>
+      </div> 
+    <div layout="column" class="contact-Details">  
+      <div  layout="row">
+        <div class="detailColOne" flex> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+             <md-input-container class="md-block" flex-gt-sm>
+            <label>First Name</label>
+            <input ng-model="vm.supplier.firstName">
+          </md-input-container>
+
+          </div>  
+        
+        </div>
+        <div style="width: 5%"></div>
+        <div class="detailColTwo" flex>
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                 
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input ng-model="vm.supplier.lastName">
+          </md-input-container>
+          </div>  
+         </div>  
+        </div>
+    </div>
+
+      <div ng-show="vm.showBilling">
+ 
+   <div class="optional" layout="row" layout-align="start start">
+          <div class="details">Billing Address</div>
+           <md-icon style="margin-left: 30px;" md-font-icon="icon-repeat" ng-click="vm.addressChange()"></md-icon>                
+    </div>
+     
+    <div layout="column" class="contact-Details">      
+
+      <div layout-gt-sm="row" style="height:64px;">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Street</label>
+              <input ng-model="vm.supplier.billingAddress.street">
+            </md-input-container>
+      </div>        
+      <div  layout="row">
+        <div class="detailColOne" flex>
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                 <md-input-container class="md-block" flex-gt-sm>
+                  <label>City</label>
+                  <input ng-model="vm.supplier.billingAddress.city">
+                </md-input-container>
+          </div> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <label>Zip Code</label>
+                      <input ng-model="vm.supplier.billingAddress.zip">
+                    </md-input-container>
+          </div> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                    <md-switch ng-model="cb" ng-change="vm.onChange(cb)" aria-label="Switch 1">
+                      Use billing address as shipping address
+                   </md-switch>
+          </div> 
+        
+        </div>
+        <div style="width: 5%"></div>
+        <div class="detailColTwo" flex>
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                <md-input-container class="md-block" flex-gt-sm>
+                  <label>State</label>
+                  <input ng-model="vm.supplier.billingAddress.state">
+                </md-input-container>
+          </div> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                <md-autocomplete 
+                    flex="" 
+                    md-selected-item="vm.selectedItem" 
+                    md-search-text="vm.searchText"
+                    md-items="item in vm.querySearch(vm.searchText)" 
+                    md-item-text="item.country" 
+                    md-floating-label="Country"
+                    md-selected-item-change="vm.selectedItemChange(vm.selectedItem)">
+                  <md-item-template>
+                    <span>{{item.country}}</span>
+                  </md-item-template>
+                </md-autocomplete>
+          </div>  
+         </div>  
+        </div>
+      </div>
+    </div>
+
+        <div ng-show="vm.showShipping">
+ 
+   <div class="optional" layout="row" layout-align="start start">
+          <div class="details">Shipping Address</div>
+           <md-icon style="margin-left: 30px;" md-font-icon="icon-repeat" ng-click="vm.addressChange()"></md-icon>
+      </div> 
+    <div layout="column" class="contact-Details">      
+
+      <div layout-gt-sm="row" style="height:64px;">
+             <md-input-container class="md-block" flex-gt-sm>
+            <label>Street</label>
+            <input ng-model="vm.supplier.shippingAddress.s_street">
+          </md-input-container>
+
+      </div>        
+      <div  layout="row">
+        <div class="detailColOne" flex>
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                 <md-input-container class="md-block" flex-gt-sm>
+            <label>City</label>
+            <input ng-model="vm.supplier.shippingAddress.s_city">
+          </md-input-container>
+          </div> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                    <md-input-container class="md-block" flex-gt-sm>
+            <label>Zip Code</label>
+            <input ng-model="vm.supplier.shippingAddress.s_zip">
+          </md-input-container>
+          </div>  
+        
+        </div>
+
+        <div style="width: 5%"></div>
+        <div class="detailColTwo" flex>
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                 <md-input-container class="md-block" flex-gt-sm>
+            <label>State</label>
+            <input ng-model="vm.supplier.shippingAddress.s_state">
+          </md-input-container>
+          </div> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                  <md-autocomplete 
+                  flex="" 
+                  md-selected-item="vm.selectedItem1" 
+                  md-search-text="vm.searchText1"
+                  md-items="item in vm.querySearch1(vm.searchText1)" 
+                  md-item-text="item.country" 
+                  md-floating-label="Country"
+                  md-selected-item-change="selectedItemChange(vm.selectedItem1)">
+          <md-item-template>
+                  <span>{{item.country}}</span>
+                </md-item-template>
+              </md-autocomplete>
+          </div>  
+         </div>  
+        </div>
+      </div> 
+    </div>
+
+     <div class="optional" layout="row" layout-align="start start">
+          <div class="details">Contact Information</div>
+      </div>
+      <div  layout="row">
+        <div class="detailColOne" flex style="padding-left: 32px;">
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+               <md-input-container class="md-block" flex-gt-sm>
+                <label>Phone</label>
+                <input type="number" name="phone" ng-required="true" ng-model="vm.supplier.phone" ng-pattern="/\d{3}\d{3}\d{4}/" maxlength="10" required>
+                <div ng-messages="editForm.phoneNo.$error">
+                <div ng-message-exp="['required', 'maxlength' , 'pattern']">
+                  Invalid Phone Number
+                </div>
+              </div> 
+              </md-input-container>
+          </div> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                  <md-input-container class="md-block" flex-gt-sm>
+                    <label>Fax</label>
+                    <input type="number" name="fax" ng-required="true" ng-model="vm.supplier.fax" ng-pattern="/\d{3}\d{3}\d{4}/" required>
+                     <div ng-messages="editForm.phoneNo.$error">
+                    <div ng-message-exp="['required', 'maxlength' , 'pattern']">
+                      Invalid Fax Number
+                    </div>
+                  </div>
+                  </md-input-container>
+          </div>  
+        </div>
+
+        <div style="width: 5%"></div>
+        <div class="detailColTwo" flex>
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                 <md-input-container class="md-block" flex-gt-sm>
+                    <label>Mobile</label>
+                    <input type="number" name="phone" ng-required="true" ng-model="vm.supplier.mobile" ng-pattern="/\d{3}\d{3}\d{4}/" maxlength="10" required>
+                    <div ng-messages="editForm.phoneNo.$error">
+                    <div ng-message-exp="['required', 'maxlength' , 'pattern']">
+                      Invalid Mobile Number
+                    </div>
+                  </div>
+                  </md-input-container>
+          </div> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                <md-input-container class="md-block" flex-gt-sm>
+                <label>Web Site</label>
+                <input ng-model="vm.supplier.website">
+              </md-input-container>
+          </div>  
+         </div>  
+        </div>
+      </div>
+      <div class="optional" layout="row" layout-align="start start">
+          <div class="details">Optional Details</div>
+      </div> 
+    <div layout="column" class="contact-Details">  
+        <div layout-gt-sm="row" style="height:64px;">
+               <md-input-container class="md-block" flex-gt-sm>
+                <label>Notes</label>
+                <input ng-model="vm.supplier.notes">
+              </md-input-container>
+        </div>  
+    </div>
+
+    <div class="optional" layout="row" layout-align="start start">
+          <div class="details">Additional Details</div>
+      </div> 
+    <div layout="column" class="contact-Details">  
+      <div layout="row">
+        <div class="detailColOne" flex> 
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+              <md-input-container class="md-block" flex-gt-sm>
+                <label>Age</label>
+                <input type="number" name="age" ng-model="vm.supplier.age" required>
+                <div ng-messages="editForm.age.$error">
+                <div ng-message-exp="['required']">
+                  Invalid Number
+                </div>
+              </div>
+              </md-input-container>
+          </div>  
+        
+        </div>
+
+        <div style="width: 5%"></div>
+        <div class="detailColTwo" flex>
+          <div layout="column" layout-gt-xs="row" class="inputHeight">
+                 
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>NIC</label>
+              <input ng-model="vm.supplier.nic">
+            </md-input-container>
+          </div>  
+         </div>  
+        </div>
+      </div>
+</div>
+</form>
+
+
+
+

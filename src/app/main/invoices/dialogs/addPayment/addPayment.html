@@ -1,0 +1,70 @@
+<style>
+  .md-datepicker-input-container
+  {
+      width: 85%
+  }
+  .datepickerdemoBasicUsage {
+  /** Demo styles for mdCalendar. */ }
+  .datepickerdemoBasicUsage md-content {
+    padding-bottom: 200px; }
+  .datepickerdemoBasicUsage .validation-messages {
+    font-size: 11px;
+    color: darkred;
+    margin: 10px 0 0 25px; }
+    .md-toast.md-success-toast-theme {
+    background-color: green;
+}
+</style>
+<md-dialog class="customDialogBox" aria-label="cusTool" style="width:800px;">
+   <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>ENTER PAYMENT</h2>
+         <span flex></span>
+         <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+      </div>
+   </md-toolbar>
+<div class="dialogContent pad_32">
+   <form ng-submit="$event.preventDefault()" name="addProd">
+
+   <div layout layout-sm="column" layout-margin>
+          <md-datepicker ng-model="vm.payment.createDate" date-disabled="disabled(vm.payment.createDate, mode)" md-placeholder="Enter date" ng-required="true" md-min-date="vm.maxDate" flex style="margin-top:25px;"></md-datepicker>
+
+               <md-input-container style="margin-top: 28px;" flex>
+                    <label>Payment Method</label>
+                    <md-select ng-model="vm.payment.paymentMethod" ng-change="vm.getPayment(vm.payment.paymentMethod)" flex>
+                        <md-optgroup >
+                           <md-option ng-repeat="pay in vm.paymentTypes" value="{{pay.paymentmethod}}">{{pay.paymentmethod}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+        </div>
+        <div layout layout-sm="column" layout-margin>
+        <md-input-container flex >
+                    <label>Amount Received</label>
+                    <input type="text" ng-model="vm.payment.recievedAmount" ng-change="netAmount()"  />
+                </md-input-container>
+
+                <md-input-container flex >
+                    <label>Bank Charge</label>
+                    <input ng-model="vm.payment.bankCharges" >
+                </md-input-container>
+        </div>
+        <div layout layout-sm="column" layout-margin>
+        <md-input-container flex style="width: 100%">
+                    <label>Comment</label>
+                    <input type="text" ng-model="vm.payment.comments"/>
+                </md-input-container>
+        </div>
+   </form>
+   </div>
+   <div class="dialogFooter pad_16" layout="row">
+        <div ng-show="vm.showpartialMsg">
+                 <span style="color:red;">Partial payments are not allowed in invoice.</span>
+               </div>
+               <span flex></span>
+          <md-button href stripe-payment="vm.config" ng-click="vm.confirmOk($event,vm.payment)" ng-disabled="vm.disablePayment" style="border:2px solid" 
+          class="md-primary">OK</md-button>
+        </div>
+</md-dialog>

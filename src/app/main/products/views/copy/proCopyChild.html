@@ -1,0 +1,149 @@
+	<div class="compose" layout="column">
+				<div class="mainsection" layout="column" layout-align="start start"  >
+					<div class="subMain" >
+						<div class="info" layout="column">
+							<div class="maininfosection" layout="row" layout-align="start start">
+								<div class="customerinfo" flex>
+									<div class="uploader" layout="row" layout-align="center center">	
+										<div layout="row" class="show-div" ng-click="vm.openBrochure('image')" style="width: 100%;">
+											<img err-src="app/main/products/img/default.jpg" class="image-conf" ng-src="{{vm.uploadFile}}">
+										</div> 
+									</div>
+								</div>
+
+								<div class="productinfo" flex> 
+
+				                    <div layout="column" layout-gt-sm="row" class ="inputHeight" >
+			                            <md-input-container flex>
+						                  <label>Product name</label>
+						                  <input name="productName" required type="text" ng-model="vm.fullProduct.productName"/> 
+
+					                        <div ng-messages="productForm.productName.$error"
+					                         ng-if="productForm.productName.$touched"> 
+										        <p ng-message="required">Product name is required.</p>
+										    </div>
+				                        </md-input-container>
+				                    </div>
+				                    <div layout="column" layout-gt-xs="row" class="inputHeight">
+				                            <md-input-container flex>
+							                  <label>Product Description</label>
+							                  <textarea maxlength="500" type="text" ng-model="vm.fullProduct.description">
+							                  </textarea>
+							               </md-input-container>
+				                    </div>
+
+				                    <div layout="column" layout-gt-xs="row" class="inputHeight">
+				                        <md-input-container flex="50">
+						                  <label>Product Code</label>
+						                  <input type="text" ng-model="vm.fullProduct.productCode" ng-blur="vm.checkProductCode()" 
+						                    /> 
+						               	</md-input-container>
+							            <div style="width:5%;"></div> 
+
+				                        <md-input-container flex="50">
+					                        <label>Unit</label>
+					                        <md-select ng-model="vm.fullProduct.productUnit">
+					                           <md-optgroup label="Unit">
+					                           <md-option ng-repeat="cat in vm.proUnits" value="{{cat}}">{{cat}}</md-option>
+					                        </md-select>
+					                    </md-input-container>
+				                    </div> 
+
+
+				                    <div layout="column" layout-gt-xs="row" class="error-height">		
+						               	<div flex  ng-show="vm.submitProgress">{{vm.proCodeErr}}</div>	 
+				                    </div>
+				                    <div layout="column" layout-gt-xs="row" class="inputHeight">
+				                        <md-input-container flex="50">
+							                <label>Price (without tax)</label>
+							                <input type="text" ng-model="vm.fullProduct.productPrice" rasm-numonly/> 
+							            </md-input-container>   
+							            <div style="width:5%;"></div> 
+				                        <md-input-container flex="50">
+						                  	<label>Tax</label>
+										  	<md-select ng-model="vm.fullProduct.productTax" ng-model-options="{trackBy: $value.taxID}">
+						              			<md-optgroup label="Select Tax">
+											    <md-option ng-value="cat" ng-repeat="cat in vm.taxesArr">{{cat.taxName}} {{cat.rate}}%</md-option>
+										  	</md-select>
+										</md-input-container>
+								 
+				                    </div>			               
+								</div>
+							</div> 
+						</div>
+						<div class="optional" layout="row" layout-align="start start">
+							  <div class="details">Optional Details </div>
+						</div> 
+						<div layout="column" class="proDetails">							
+							<div  layout="row">
+								<div class="detailColOne" flex>
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex>
+						                  <label>Product Brand</label>
+						                  <md-select ng-model="vm.fullProduct.brand" style=" width:90%;"> 
+						                    <md-optgroup label="Brand">
+						                    <md-option ng-repeat="cat in vm.proBrandArray" value="{{cat}}">{{cat}}</md-option>
+						                  </md-select>
+						               </md-input-container>
+							        </div> 
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex>
+						                  <label>Inventory Tracking</label>	
+						                  <md-select  ng-model="vm.fullProduct.inventory" flex 
+						                     ng-change="vm.changeInventory()" style=" width:90%;">
+						                     <md-optgroup label="Inventory">
+						                     <md-option value="No" selected> Do Not Track Inventory</md-option>
+						                     <md-option value="Yes">Track Inventory</md-option>
+						                  </md-select>
+						               </md-input-container>
+							        </div> 
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex >
+						                  <label>Cost Price</label>
+						                  <input  type="text" ng-model="vm.fullProduct.costPrice" style=" width:90%;" rasm-numonly /> 
+						               </md-input-container>
+						               
+							        </div> 	
+			                    </div>	
+								<div class="detailColTwo" flex>
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex >
+						                  <label>Product Category</label>
+						                     <md-select ng-model="vm.fullProduct.productCategory">
+						                       <md-optgroup label="Product vm.Category">
+						                       <md-option ng-repeat="cat in vm.categoryArray" value="{{cat}}">{{cat}}</md-option>
+						                    </md-select>
+						               </md-input-container>
+							        </div> 
+									<div layout="column" layout-gt-xs="row" class="inputHeight">
+						               <md-input-container flex>
+						                  <label>Stock Level</label>
+						                  <input ng-required="!vm.stockDisabled" type="text" ng-model="vm.fullProduct.quantity"
+						                  	ng-disabled="vm.stockDisabled"/> 
+						               </md-input-container>
+							        </div> 
+									<div layout="column" layout-gt-xs="row" class="brochureBtn">						               
+										<md-button class="md-primary" style="border:2px solid;margin-left: 0;"
+										ng-click="vm.openBrochure('brochure')">
+											<md-icon md-font-icon="icon-cloud-upload"></md-icon>
+											Upload Brochure
+										</md-button>
+							        </div> 
+			                    </div>
+							</div>
+		                    <div layout="row" class="chipsdemoBasicUsage" >
+			                  	<md-content class="md-padding" layout="column" flex >			                      
+				                    <md-chips ng-model="vm.fullProduct.tags" readonly="readonly" style="margin-left: -15px;margin-right: -15px;" placeholder="Enter a tag" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag" secondary-placeholder="+Tags">		                        
+				                        <md-chip-template>
+				                           <strong>{{$chip}}</strong>
+				                        </md-chip-template>
+				                    </md-chips>
+			                  	</md-content>
+			               	</div> 
+						</div>
+					</div>
+					<!-- <div class="notes">notes section</div>
+					<div class="optional">optional section</div> -->
+				</div>
+				
+			</div>

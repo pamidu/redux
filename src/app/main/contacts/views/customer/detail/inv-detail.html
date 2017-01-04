@@ -1,0 +1,160 @@
+<div class="modern" layout="row" ng-init="vm.loadDetailView()">
+    <div class="invoice-container" ng-repeat="inv in vm.invoiceArr1">
+
+        <div class="detail-wrapper">
+            <div class="detail-header" layout="row" layout-align="space-between start">
+                <div class="ids" layout="column">
+                    <div layout="row" class="seller" layout-align="start center">
+                        <div class="brandlogo" layout="row" layout-align="center center">
+                            <img src="/assets/clientcompany/bonobopvtltd.png" width="156" height="156">
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="detail">
+                            <div class="title">Bonobo Tech (Pvt) Ltd</div>
+                            <div class="address">No.178, Stanley Tillakaratne MW, Nugegoda</div>
+                            <div class="phone">+94 114 869 000</div>
+                            <div class="email">contact@bonobotech.com</div>
+                            <div class="website">www.bonobotech.com</div>
+                        </div>
+                    </div>
+
+                    <div layout="row" class="client" layout-align="start center">
+                        <div class="logo" layout="row" layout-align="center center">
+                            <div>{{inv.profileName[0] | uppercase}}</div>
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="detail">
+                            <div class="title">{{inv.profileName}}</div>
+                            <div ng-if="inv.billingAddress" class="address">{{inv.billingAddress.street}},{{inv.billingAddress.city}},{{inv.billingAddress.city}},{{inv.billingAddress.country}}</div>
+                            <div ng-if="inv.client.phonenumber" class="phone"><span>Phone</span>:
+                                {{inv.client.phonenumber}}
+                            </div>
+                            <div ng-if="inv.email" class="email">
+                                {{inv.email}}
+                            </div>
+                            <div ng-if="inv.client.website" class="website"><span>Web</span>:
+                                {{inv.client.website}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="summary">
+                    <tr class="code">
+                        <td class="label">INVOICE</td>
+                        <td class="value">{{inv.invoiceNo}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">INVOICE DATE</td>
+                        <td class="value">{{inv.startDate|date}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">DUE DATE</td>
+                        <td class="value">{{inv.dueDate|date}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">TOTAL DUE</td>
+                        <td class="value">{{inv.subTotal | currency:inv.baseCurrency+' '}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="detail-content">
+                <table class="simple invoice-table">
+                    <thead class="tableHeader">
+                        <th>#</th>
+                        <th>DESCRIPTION</th>
+                        <th class="text-right">QUANTITY</th>
+                        <th class="text-right">UOM</th>
+                        <th class="text-right">UNIT PRICE</th>
+                        <th class="text-right">DISCOUNT</th>
+                        <th class="text-right">AMOUNT</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="items in inv.invoiceLines">
+                            <td>{{$index + 1}}</td>
+                            <td>
+                                <div class="title"> {{items.productName}}</div>
+                                <div class="detail"> {{items.detail}}</div>
+                            </td>
+                            <td class="text-right">
+                                {{items.quantity}}
+                            </td>
+                            <td class="text-right">
+                                {{items.productUnit}}
+                            </td>
+                            <td class="text-right">
+                                {{items.price | currency:inv.baseCurrency+' '}}
+                            </td>
+                            <td class="text-right">
+                                {{items.discount}} %
+                            </td>
+                            <td class="text-right">
+                                {{items.amount | currency:inv.baseCurrency+' '}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="simple invoice-table-footer">
+                    <tbody>
+                        <tr class="subtotal">
+                            <td>SUBTOTAL</td>
+                            <td>{{inv.subTotal | currency:inv.baseCurrency+' '}}</td>
+                        </tr>
+                        <tr class="discount">
+                            <td>DISCOUNT</td>
+                            <td>-{{inv.discountAmount | currency:inv.baseCurrency+' '}}</td>
+                        </tr>
+                        <tr class="shipping">
+                            <td>SHIPPING</td>
+                            <td>{{inv.shipping | currency:inv.baseCurrency+' '}}</td>
+                        </tr>
+                        <tr class="tax">
+                            <td>TAX</td>
+                            <td>{{inv.salesTaxAmount | currency:inv.baseCurrency+' '}}</td>
+                        </tr>
+                        <tr class="paid">
+                            <td>PAID</td>
+                            <td>{{inv.paymentDetails | currency:inv.baseCurrency+' '}}</td>
+                        </tr>
+                        <tr class="total">
+                            <td>TOTAL</td>
+                            <td>{{inv.netAmount | currency:inv.baseCurrency+' '}}</td>
+                        </tr>
+                        <tr class="balancedue">
+                            <td>BALANCE DUE</td>
+                            <td>{{inv.netAmount | currency:inv.baseCurrency+' '}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="detail-footer">
+                <div class="note">Please pay within 15 days. Thank you for your business.</div>
+                <div layout="row" layout-align="start start">
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="/assets/clientcompany/bonobopvtltd.png" width="32" height="32">
+                    </div>
+                    <div class="small-note">
+                        In condimentum malesuada efficitur. Mauris volutpat placerat auctor. Ut ac congue dolor. Quisque
+                        scelerisque lacus sed feugiat fermentum. Cras aliquet facilisis pellentesque. Nunc hendrerit
+                        quam at leo commodo, a suscipit tellus dapibus. Etiam at felis volutpat est mollis lacinia.
+                        Mauris placerat sem sit amet velit mollis, in porttitor ex finibus. Proin eu nibh id libero
+                        tincidunt lacinia et eget eros.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<md-dialog class="customDialogBox" aria-label="Mango (Fruit)" style="width:800px;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Invite User</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent pad_32">
+		<form name="editForm" novalidate>
+			<md-content flex>
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container flex="30">
+						<label>Email</label>
+						<input ng-model="vm.inviteUserEmail" name="inviteUserEmail" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" ng-disabled="vm.dis" required>
+						<div ng-messages="editForm.inviteUserEmail.$error" role="alert">
+							<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+								Your email must be between 10 and 100 characters long and look like an e-mail address.
+							</div>
+						</div>
+					</md-input-container>
+					<div flex="20" layout="row" layout-align="start center">
+						<md-button class="md-primary" ng-click="vm.reSendInvite()" style="font-size:12px;" >
+							Resend Invite
+						</md-button>
+					</div>
+				</div>
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container flex="30">
+						<label>First Name</label>
+						<input ng-model="vm.firstName" required>
+					</md-input-container>
+					<md-input-container flex>
+						<label>Last Name</label>
+						<input ng-model="vm.lastName">
+					</md-input-container>
+				</div>
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container flex>
+						<label>Role</label>
+						<md-select ng-model="vm.role" ng-model-options="{trackBy: '$value.id'}">
+							<md-option ng-repeat="roles in vm.roles" value="{{roles}}" ng-value="roles" required>{{roles.roleName}}</md-option>
+						</md-select>
+					</md-input-container>
+					<span ng-show="vm.roleRequired" style="color:red; font-size:12px;">Please add role Name</span>
+				</div>
+				<div layout layout-sm="column" layout-margin>
+					<div flex="5" hide-sm>	
+					</div>
+					<div flex="20" hide-sm>
+					</div>
+					<div flex layout layout-align="end center">
+						<span style="color: #A2A1A1; font-size: 15px;">An invite email with instructions will be sent to the new user</span>
+					</div>
+				</div>
+				<md-divider></md-divider>
+			</md-content>
+		</form>
+	</div>
+	<div class="dialogFooter pad_16" layout="row">
+		<span flex></span>
+		<md-button class="md-primary md-hue-3" ng-click="vm.cancel()" style="margin-right:20px;">
+			Cancel
+		</md-button>
+		<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid" >
+			{{vm.button}}
+		</md-button>
+	</div>
+</md-dialog>

@@ -1,0 +1,188 @@
+<div class="toolbar" layout="row" layout-align="start center">
+	<md-button class="md-icon-button sidenav-toggle" ng-click="vm.toggleSidenav('settingsidenav')" hide-gt-md aria-label="Toggle left sidenav">
+		<md-icon md-font-icon="icon-menu" class="icon"></md-icon>
+	</md-button>
+	<h1>Email Templates Settings</h1>
+</div>
+<div class="contentsection">
+	<md-content style="overflow-x: hidden;">
+		<div layout layout-align="start center" style="background-color:#f6f6f6; height:45px;width:100%;">
+			<div style="margin-left:18px; font-weight: 500;" >
+				Email Templates
+			</div>
+		</div>
+
+		<div layout="row" layout-sm="column" flex style="margin-bottom:40px;">
+			<div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.invoiceemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Invoice Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.invoiceSubmit()">{{vm.invoicebtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+			<div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject1">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.contactemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Contact Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.contactSubmit()">{{vm.contactbtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+			<div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject2">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.paymentemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Payment Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.paymentSubmit()">{{vm.paymentbtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+		</div>
+		<div layout="row" layout-sm="column" flex style="margin-bottom:40px;">
+			<div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject3">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.productemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Product Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.productSubmit()">{{vm.productbtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+            <div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject4">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.expenseemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Expense Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.expenseSubmit()">{{vm.expensebtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+             <div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject5">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.inventoryemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Inventory Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.inventorySubmit()">{{vm.inventorybtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+		</div>
+        <div layout="row" layout-sm="column" flex style="margin-bottom:40px;">
+			<div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject6">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.paymentReminderemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Payment Reminder Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.paymentReminderSubmit()">{{vm.paymentReminderbtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+            <div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject7">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.estimateemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Estimate Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.estimateSubmit()">{{vm.estimatebtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+            <div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject8">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.creditNoteemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Credit Note Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.creditNoteSubmit()">{{vm.creditNotebtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+        </div>
+        
+        <div layout="row" layout-sm="column" flex style="margin-bottom:40px;">
+			<div flex layout="row" layout-align="center center">
+				<md-card style="width:260px;">
+					<md-input-container flex>
+						<label>Subject</label>
+						<input ng-model="vm.subject9">
+					</md-input-container>
+					<div layout="row" layout-align="center center" style="margin:6px;">
+						<textarea rows="25" cols="80" style="height: 230px; border: 1px solid #E1E1E1;" class="textarea" ng-model="vm.recurringProfileemailContent">
+						</textarea>
+					</div>
+					<div class="md-actions" layout="column" layout-align="center center">
+						<div>Recurring Profile Email Template</div>
+						<md-button class="md-primary" style="font-size:12px;" ng-click="vm.recurringProfileSubmit()">{{vm.recurringProfilebtnName}}</md-button>
+					</div>
+				</md-card>
+			</div>
+        </div>    
+        
+            
+
+	</md-content>
+</div>

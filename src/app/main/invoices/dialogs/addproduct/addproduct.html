@@ -1,0 +1,110 @@
+<md-dialog class="customDialogBox" aria-label="cusTool" style="width:800px;">
+
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+         <h2>New Line Item</h2>
+         <span flex></span>
+         <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+      </div>
+   </md-toolbar>
+
+   <div class="dialogContent pad_32" style="overflow: auto;">
+
+   <form ng-submit="$event.preventDefault()" name="addProd">
+
+   <div layout layout-sm="column" layout-margin>
+     <md-autocomplete style="width:100%;" flex 
+              md-search-text="vm.searchedProd"
+                ng-keydown="enter(vm.searchedProd)"
+                  md-selected-item="vm.selctedProd" 
+                  md-items="item in vm.querySearch(vm.searchedProd)" 
+                  md-item-text="item.dis" 
+                  md-floating-label="Product or Service"
+                  md-autofocus="true"
+                  md-selected-item-change="vm.selectedItemChange(vm.selctedProd)">
+              <md-item-template >
+                 <span  md-highlight-text="searchedProd">{{item.dis}}</span>
+              </md-item-template>
+            <div ng-messages="addProd.autocompleteField.$error" ng-if="addProd.autocompleteField.$touched">
+              <div ng-message="required">This is required.</div>
+          </div>
+         </md-autocomplete >
+   </div>
+
+   <div layout layout-sm="column" layout-margin ng-repeat="pim in vm.promoItems">
+      <md-input-container flex style="margin-top:0px;">
+  <label>Quantity</label>
+  <input type="number" ng-model="qty" min="1" required="true" ng-change="vm.setqty(qty)"  name="quantity"/>
+  </md-input-container>
+
+       <md-input-container style="margin-top: -2px;" flex>
+              <label>Unit</label>
+              <md-select  ng-model="pim.ProductUnit" ng-change="vm.setUOM(pim)" flex ng-required="true"  name="uom" md-no-asterisk="" name="terms">
+                      <md-optgroup label="Terms type">
+                  <md-option  ng-repeat="tax in  vm.UnitOfMeasure" value="{{tax.unitsOfMeasurement}}" >{{tax.unitsOfMeasurement}}</md-option>
+              </md-optgroup>
+              </md-select>
+          </md-input-container>
+      
+
+       <md-input-container  style=" margin-top:-1px;" flex>
+          <label>Price</label>
+          <input type="number" rasmNumonly ng-model="pim.price" ng-required="true" name="price" ng-change="vm.setprice(pim.price)"/>
+               <div ng-messages="addProd.price.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+         </md-input-container>
+   </div>
+
+   <div layout layout-sm="column" layout-margin ng-repeat="pim in vm.promoItems">
+     <md-input-container  flex>
+          <label>Discount %</label>
+          <input type="number" min="1" max="99" ng-model="discount" ng-disabled="vm.displayDiscountLine" ng-change="vm.setDiscount(discount)"/>
+          <!-- <md-icon md-svg-src="img/disc.svg"  md-ink-ripple style="margin-left:-30px;margin-top:5px;" ></md-icon> -->
+       </md-input-container>
+
+       <md-input-container style="margin-top: 8px;"  flex>
+                <label>Tax</label>
+                <md-select  ng-model="pim.tax.taxName" ng-disabled="enableTax" ng-change="vm.setTax(pim.tax.taxName)" flex >
+                      <md-optgroup label="Taxes">
+                     <md-option ng-repeat="tax in vm.taxes" value="{{tax.taxName}}">
+                 {{tax.taxName}} ({{tax.rate}}%)
+              </md-option>
+                </md-optgroup>
+                </md-select>
+                 
+            </md-input-container>
+
+        <md-input-container style=" margin-top:10px;" flex>
+          <label>Amount</label>
+          <span style="display:none">{{calAMount()}}</span >
+           <input ng-model="vm.Amount|currency:vm.baseCurrency" ng-disabled="true"> 
+          
+       </md-input-container>
+   </div>
+   
+     
+<div layout layout-sm="column" layout-margin>
+         <md-input-container flex>
+            <label>Optional line comment</label>
+            <input type="text" ng-model="vm.olp"/>
+         </md-input-container>
+      </div>
+     
+   </form>
+   </div>
+
+    <div class="dialogFooter pad_16" layout="row">
+   <div  ng-show="vm.showProduct" >
+       <span style="color:red" flex>Please fill out required fields </span>
+   </div>
+   <div ng-show="vm.getqty">
+     <span style="color:red;">required quatity is not available in  the stock.</span>
+   </div>
+      <span flex></span>
+      <md-button  ng-click="vm.addproductToarray(vm.searchedProd)" style="border:2px solid" class="md-primary" >SAVE</md-button>
+   </div>
+  
+</md-dialog>

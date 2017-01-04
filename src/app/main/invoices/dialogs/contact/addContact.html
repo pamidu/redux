@@ -1,0 +1,176 @@
+<md-dialog class="customDialogBox" aria-label="cusTool" style="width:800px;">
+
+  <md-toolbar>
+      <div class="md-toolbar-tools">
+            <h2>New Contact</h2>
+            <span flex></span>
+            <md-button href class="md-icon-button" ng-click="vm.cancel()">
+            <md-icon  md-font-icon="icon-close" aria-label="Close dialog"></md-icon>
+         </md-button>
+        </div>
+    </md-toolbar>
+    <div class="dialogContent pad_32" style="overflow: auto;">
+    <form name="cusForm" ng-submit="submit()">
+        
+        <div class="optional" layout="row" layout-align="start start">
+              <div class="details">Contact New </div>
+        </div> 
+        <div layout layout-sm="column" layout-margin>
+            <md-input-container id="accContainer" flex >
+                    <label>Company or Individual Name</label>
+                    <input ng-model="vm.contact.profileName" autofocus ng-required="true">
+                </md-input-container>
+                <md-input-container id="accContainer" flex >
+                    <label>Email</label>
+                    <input type="email" ng-model="vm.contact.email" ng-required="true" name="email" ng-blur="validateEmail(vm.contact.email)"  ng-pattern="/^.+@.+\..+$/">
+                   
+                    <div ng-messages="cusForm.email.$error" role="alert" >
+                       <div ng-message-exp="['required','pattern']">Please enter a correct e-mail address.</div>
+                       <div ng-message="required" >This is required.</div>
+                    </div>
+                    <div>
+                      <span ng-show="emailExsist" style="font-size: 13px; color: red;">Email Aready Exist
+                      </span> 
+                    </div> 
+                </md-input-container>
+        </div>
+   
+        <div class="optional" layout="row" layout-align="start start">
+              <div class="details">Contact Person </div>
+        </div> 
+        <div layout layout-sm="column" layout-margin>
+             <md-input-container id="accContainer" flex>
+                    <label>First Name</label>
+                    <input id="accNo" ng-model="vm.contact.firstName">
+                </md-input-container>
+                <md-input-container flex >
+                    <label>Last Name</label>
+                    <input ng-model="vm.contact.lastName">
+                </md-input-container>
+        </div>
+        <div ng-show="vm.showBilling" >
+            <div class="optional" layout="row" layout-align="start start">
+                  <div class="details">Billing Address</div>
+                  <md-icon style="margin-left: 30px;" md-font-icon="icon-repeat" ng-click="vm.addressChange()"></md-icon>
+            </div> 
+            <div layout layout-sm="column" layout-margin>
+                <md-input-container id="accContainer" flex >
+                    <label>Street</label>
+                    <input id="accNo" ng-model="vm.contact.billingAddress.street" >
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column" layout-margin>
+                <md-input-container id="accContainer" flex>
+                    <label>City</label>
+                    <input id="accNo" ng-model="vm.contact.billingAddress.city" >
+                </md-input-container>
+                <md-input-container id="accContainer" flex>
+                    <label>State</label>
+                    <input id="accNo" ng-model="vm.contact.billingAddress.state">
+                </md-input-container>
+                </div>
+            <div layout layout-sm="column" layout-margin>
+            <md-input-container id="accContainer" flex>
+                        <label>Zip code</label>
+                        <input id="accNo" ng-model="vm.contact.billingAddress.zip" >
+                    </md-input-container flexflex>
+                    <md-autocomplete 
+                        style="margin-top: -10px;"
+                        flex="" 
+                        md-selected-item="vm.selectedItem" 
+                        md-search-text="vm.billingSearch"
+                        md-items="item in vm.billingquerySearch(vm.billingSearch)" 
+                        md-item-text="item.country" 
+                        md-floating-label="Country"
+                        md-selected-item-change="vm.editBillingCountry(vm.selectedItem)">
+                    <md-item-template>
+                      <span>{{item.country}}</span>
+                    </md-item-template>
+                  </md-autocomplete>
+            </div>
+            <div layout layout-sm="column" layout-margin>
+                    <label style="margin-left:0px;">Do you want to use billing address as shipping address?</label>
+                    <div style="margin-top:-12px;">
+                        <md-switch ng-model="vm.cb" ng-change="vm.onChange(cb)" aria-label="Switch 2" class="md-primary">
+                        </md-switch>
+                    </div>
+                </div>
+        </div>
+       
+        <div ng-show="vm.showShipping" flex>
+          
+        
+        <div class="optional" layout="row" layout-align="start start">
+              <div class="details">Shipping Address</div> 
+              <md-icon style="margin-left: 30px;" md-font-icon="icon-repeat" ng-click="vm.addressChange()"></md-icon>
+        </div> 
+            <div layout layout-sm="column" layout-margin>
+                
+                <md-input-container id="accContainer" flex >
+                    <label>Street</label>
+                    <input id="accNo" ng-model="vm.contact.shippingAddress.s_street">
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column" layout-margin>
+                <md-input-container id="accContainer" flex>
+                    <label>City</label>
+                    <input id="accNo" ng-model="vm.contact.shippingAddress.s_city">
+                </md-input-container>
+                <md-input-container id="accContainer" flex>
+                    <label>State</label>
+                    <input id="accNo" ng-model="vm.contact.shippingAddress.s_state">
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column" layout-margin>
+                <md-input-container id="accContainer" flex>
+                    <label>Zip code</label>
+                    <input id="accNo" ng-model="vm.contact.shippingAddress.s_zip">
+                </md-input-container>
+                <md-autocomplete 
+                          style="margin-top: -10px;"
+                          flex=""  
+                          md-selected-item="vm.selectedItem1" 
+                          md-search-text="vm.searchText"
+                          md-items="item in vm.querySearch(vm.searchText)" 
+                          md-item-text="item.country" 
+                          md-floating-label="Country"
+                          md-selected-item-change="vm.editShippingCountry(vm.selectedItem1)">
+                <md-item-template>
+                  <span>{{item.country}}</span>
+                </md-item-template>
+              </md-autocomplete>
+            </div>
+        
+        </div> 
+        <div class="optional" layout="row" layout-align="start start">
+              <div class="details">Contact Information</div>
+        </div> 
+        <div layout layout-sm="column" layout-margin>
+            
+            <md-input-container id="accContainer" flex >
+                <label>Phone</label>
+                <input type='tel' pattern='^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$' ng-model="vm.contact.phone" >
+            </md-input-container>
+            <md-input-container id="accContainer" flex >
+                <label>Mobile</label>
+                <input type="tel" ng-model="vm.contact.mobile" >
+            </md-input-container>
+        </div>
+        <div layout layout-sm="column" layout-margin>
+            <md-input-container id="accContainer" flex>
+                <label>Fax</label>
+                <input id="accNo" ng-model="vm.contact.fax" >
+            </md-input-container>
+            <md-input-container id="accContainer" flex>
+                <label>Website</label>
+                <input id="accNo" ng-model="vm.contact.website" >
+            </md-input-container>
+        </div>
+    </form>
+    </div>
+    <div class="dialogFooter pad_16" layout="row">
+        <span flex></span>
+        <md-button style="height: 40px; margin-top: -15px;" type="submit" ng-click="vm.addContact(vm.contact)" class="md-primary">Save</md-button>
+    </div>
+
+</md-dialog>

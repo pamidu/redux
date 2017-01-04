@@ -1,0 +1,116 @@
+ 
+    <div class="detail-wrapper">
+        <div class="detail-header" layout="row" layout-align="space-between start">
+            <div class="ids" layout="column">
+                <div layout="row" class="seller" layout-align="start center">
+                    <div class="brandlogo" layout="row" layout-align="center center">
+                        <img src="{{vm.companyLogo}}" width="156" height="156">
+                    </div>
+
+                    <div class="divider"></div>  
+                    <div class="detail">
+                        <div class="title">{{vm.setPrf.companyName}}</div>
+                        <div class="address">{{vm.setPrf.street}} {{vm.setPrf.city}} {{vm.setPrf.state}}</div>
+                        <div class="address">{{vm.setPrf.country}},{{vm.setPrf.zip}}</div>
+                        <div class="phone">{{vm.setPrf.phoneNo}}</div>
+                        <div class="email">{{vm.setPrf.companyEmail}}</div>
+                        <div class="website">{{vm.setPrf.website}}</div>
+                    </div>
+                </div>
+
+                <div layout="row" class="client" layout-align="start center">
+                    <div class="logo" layout="row" layout-align="center center">
+                        <div>{{vm.fullPayment.profileName[0] | uppercase}}</div>
+                    </div>
+
+                    <div class="divider"></div> 
+                    <div class="detail">
+                        <div class="title">{{vm.fullPayment.profileName}}</div>
+                        <div ng-if="vm.fullPayment.profileAddress" class="address">{{vm.fullPayment.profileAddress.street}},{{vm.fullPayment.profileAddress.city}},{{vm.fullPayment.profileAddress.city}},{{vm.fullPayment.profileAddress.country}}</div>
+                        <div ng-if="vm.profileDada.mobile" class="phone"><span>Phone</span>:
+                            {{vm.profileDada.mobile}}
+                        </div>
+                        <div ng-if="vm.profileDada.email" class="email">
+                            {{vm.profileDada.email}}
+                        </div>
+                        <div ng-if="vm.profileDada.website" class="website"><span>Web</span>:
+                            {{vm.profileDada.website}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <table class="summary">
+                <tr class="code">
+                    <td class="label">PAYMENT</td>
+                    <td class="label">RECEIPT</td>
+                </tr>
+                <tr class="tableSpacer"></tr>
+                <tr>
+                    <td class="label">PAYMENT NO</td>
+                    <td class="value">{{vm.fullPayment.receiptID}}</td>
+                </tr>
+                <tr>
+                    <td class="label cellSpacer">PAYMENT DATE</td>
+                    <td class="value">{{vm.fullPayment.lastTranDate | date}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">PAYMENT NO</td>
+                    <td class="value">{{vm.fullPayment.paymentMethod}}</td>
+                </tr>
+
+                <tr>
+                    <td class="label cellSpacer">AMOUNT RECEIVEED</td>
+                    <td class="value">{{vm.fullPayment.recievedAmount | currency : vm.baseCurrency+" " }}</td>
+                </tr> 
+            </table>
+        </div>
+
+        <div class="detail-content">
+            <table class="simple invoice-table">
+                <thead class="tableHeader"> 
+                    <th class="text-right" style="text-align: center !important">DATE</th>
+                    <th class="text-right" style="text-align: center !important">INVOICE NO</th>
+                    <th class="text-right" style="text-align: center !important">AMOUNT</th>
+                    <th class="text-right" style="text-align: center !important">BALANCE</th>
+                    <th class="text-right" style="text-align: center !important">PAID</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="items in vm.fullPayment.paidInvoice track by $index">
+                         
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.duedate | date}}
+                        </td>
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.invono}}
+                        </td>
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.famount | currency : ""}}
+                        </td>
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.recAmount | currency : ""}} 
+                        </td>
+                        <td class="text-right" style="text-align: center !important">
+                            {{items.amount - item.balance | currency : ""}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+  
+        </div>
+
+        <div class="detail-footer">
+            <div class="note" layout="row" layout-align="space-between start">
+                <div>TOTAL PAYMENT APPLIED </div>
+                <div> <b style="color: black">{{vm.fullPayment.aAmount|currency : vm.baseCurrency+" "}}</b></div>
+             
+              </div> 
+            <div class="note" layout="row" layout-align="space-between start">
+                <div>EXCESS PAYMENT </div>
+                <div> <b style="color: black">{{vm.fullPayment.outStandingPayment|currency : vm.baseCurrency+" "}}</b></div>
+             
+              </div>
+        </div>
+    </div> 

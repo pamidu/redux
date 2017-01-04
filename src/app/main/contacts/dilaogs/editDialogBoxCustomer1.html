@@ -1,0 +1,271 @@
+<md-dialog aria-label="Mango (Fruit)"  style="width: 100%;padding: 0px;">
+
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Edit Customer</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="vm.cancelDialog()">
+          <!-- <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon> -->
+          <md-icon md-font-icon="icon-close"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content >
+      <div class="md-dialog-content">
+
+<!-- <div id="contacts" class="page-layout carded left-sidenav" layout="row"> -->
+
+  <!-- CENTER -->
+<!--   <div class="center" layout="column" flex> -->
+
+    <!-- CONTENT-CARD -->
+    <div class="content-card" layout="column" ms-scroll>
+    <div class="panel-body">
+
+      <!-- PRIMARY TOOLBAR -->
+ <!--      <div class="toolbar" layout="row" layout-align="space-between center">
+        <div layout="row" layout-align="start center">
+          <md-button class="md-icon-button close-thread" aria-label="Back"
+          ng-click="vm.toggleChildStates('app.contacts')">
+          <md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+        </md-button>
+
+        <div class="divider-vertical"></div>
+
+        <h2>Compose New Customer</h2>
+      </div>
+      <div layout="row" layout-align="start center">
+
+      </div>
+    </div> -->
+    <!-- /PRIMARY TOOLBAR -->
+    <!-- WRAPPER -->
+
+    <div >
+    <div layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+      <div class="toolbarCompose" layout="row" layout-align="space-between center">
+        <div>Customer Name</div>
+      </div>                
+    </div>
+
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Company or Individual name</label>
+            <input ng-model="vm.contact.profileName">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input ng-model="vm.contact.email">
+          </md-input-container>
+        </div>
+
+        <div layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+      <div class="toolbarCompose" layout="row" layout-align="space-between center">
+        <div>Contact Person</div>
+      </div>                
+    </div>
+
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>First Name</label>
+            <input ng-model="vm.contact.firstName">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input ng-model="vm.contact.lastName">
+          </md-input-container>
+        </div>
+
+
+
+<div ng-show="vm.showBilling">
+        <div layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+      <div class="toolbarCompose" layout="row" layout-align="space-between center">
+        <div>Billing Address</div>
+      </div> 
+      <div flex><md-icon md-font-icon="icon-arrow-down-bold-circle-outline" ng-click="vm.addressChange()" style="padding-top:9px;"></div>               
+    </div>
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Street</label>
+            <input ng-model="vm.contact.billingAddress.street">
+          </md-input-container>
+        </div>
+
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>City</label>
+            <input ng-model="vm.contact.billingAddress.city">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>State</label>
+            <input ng-model="vm.contact.billingAddress.state">
+          </md-input-container>
+        </div>
+        <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Zip Code</label>
+            <input ng-model="vm.contact.billingAddress.zip">
+          </md-input-container>
+          <md-autocomplete 
+                  flex="" 
+                  md-selected-item="vm.selectedItem" 
+                  md-search-text="vm.searchText"
+                  md-items="item in vm.querySearch(vm.searchText)" 
+                  md-item-text="item.country" 
+                  md-floating-label="Country"
+                  md-selected-item-change="selectedItemChange(vm.selectedItem)">
+          <md-item-template>
+                  <span>{{item.country}}</span>
+                </md-item-template>
+              </md-autocomplete>
+        </div>
+
+         <div class="toolbarCompose" layout-gt-sm="row">
+         <md-switch ng-model="cb" ng-change="vm.onChange(cb)" aria-label="Switch 1">
+        Use billing address as shipping address
+     </md-switch>
+     </div>
+
+     </div>
+
+    <div ng-show="vm.showShipping">
+
+        <div layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+      <div class="toolbarCompose" layout="row" layout-align="space-between center">
+        <div>Shipping Address</div>
+      </div>
+      <div flex><md-icon md-font-icon="icon-arrow-down-bold-circle-outline" ng-click="vm.addressChange()" style="padding-top:9px;"></div>               
+    </div>
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Street</label>
+            <input ng-model="vm.contact.shippingAddress.s_street">
+          </md-input-container>
+        </div>
+
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>City</label>
+            <input ng-model="vm.contact.shippingAddress.s_city">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>State</label>
+            <input ng-model="vm.contact.shippingAddress.s_state">
+          </md-input-container>
+        </div>
+        <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Zip Code</label>
+            <input ng-model="vm.contact.shippingAddress.s_zip">
+          </md-input-container>
+          <md-autocomplete 
+                  flex="" 
+                  md-selected-item="vm.selectedItemShipping" 
+                  md-search-text="vm.searchText1"
+                  md-items="item in vm.querySearchShipping(vm.searchText1)" 
+                  md-item-text="item.country" 
+                  md-floating-label="Country"
+                  md-selected-item-change="selectedItemChange(vm.selectedItemShipping)">
+          <md-item-template>
+                  <span>{{item.country}}</span>
+                </md-item-template>
+              </md-autocomplete>
+        </div>
+
+         <div class="toolbarCompose" layout-gt-sm="row">
+       
+     </div>
+
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="toolbarCompose" layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+      <div layout="row" layout-align="space-between center">
+        <div>Contact Information</div>
+      </div>                
+    </div>
+
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Phone</label>
+            <input ng-model="vm.contact.phone">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Mobile</label>
+            <input ng-model="vm.contact.mobile">
+          </md-input-container>
+        </div>
+        <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Fax</label>
+            <input ng-model="vm.contact.fax">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Web Site</label>
+            <input ng-model="vm.contact.website">
+          </md-input-container>
+        </div>
+
+        <div class="toolbarCompose" layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+      <div layout="row" layout-align="space-between center">
+        <div>Optional Details</div>
+      </div>                
+    </div>
+
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Notes</label>
+            <input ng-model="vm.contact.notes">
+          </md-input-container>
+        </div>
+
+        <div class="toolbarCompose" layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+      <div layout="row" layout-align="space-between center">
+        <div>Additional Details</div>
+      </div>                
+    </div>
+
+    <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Age</label>
+            <input ng-model="vm.contact.age">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>NIC</label>
+            <input ng-model="vm.contact.NIC">
+          </md-input-container>
+        </div>
+    <div class="footersection" layout="row" layout-align="end center">
+      <md-button class="md-primary" ng-click="vm.cancelDialog()" style="border:2px solid">cancel</md-button>
+      <md-button class="md-accent" ng-click="vm.editCustomer(vm.contact)" style="border:2px solid">edit</md-button>
+    </div>
+
+</div>
+
+</div>
+    </div>
+    </div>
+<!--     </div>
+    </div> -->
+    </md-dialog-content>
+
+    </md-dialog>

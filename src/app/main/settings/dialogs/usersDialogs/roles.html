@@ -1,0 +1,280 @@
+<md-dialog class="customDialogBox" aria-label="Mango (Fruit)" style="width:800px;">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Add/Edit Role</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="vm.cancel()">
+				<md-icon md-font-icon="icon-close"></md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<div class="dialogContent pad_32" ms-scroll>
+		<form name="editForm" novalidate>
+			<md-content flex>
+				<div layout layout-sm="column" layout-margin>
+					<md-input-container flex style="margin-top: 17px;">
+						<label>Role Name</label>
+						<input ng-model="vm.roleName" required>
+					</md-input-container>
+					<md-input-container flex style="margin-top: 17px;">
+						<label>Select Predefind Role</label>
+						<md-select ng-model="vm.preRole" ng-change="vm.getDataPredefindRole(vm.preRole)">
+							<md-option ng-repeat="roles in vm.roles" value="{{roles}}">{{roles.roleName}}</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+
+				<md-divider></md-divider>
+
+				<div layout layout-margin>
+					<div flex="20"><span>Modules</span></div>
+					<!-- <div flex layout="row" layout-align="center center"><span>All</span></div> -->
+					<div flex layout="row" layout-align="center center"><span>View</span></div>
+					<div flex layout="row" layout-align="center center"><span>Add</span></div>
+					<div flex layout="row" layout-align="center center"><span>Edit</span></div>
+					<div flex layout="row" layout-align="center center"><span>Cancel</span></div>
+					<div flex layout="row" layout-align="center center"><span>Delete</span></div>
+				</div>
+				<div>
+					<div layout layout-margin>
+						<div flex="20" layout="row" layout-align="start center"><label>Invoices</label></div>
+		<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="invoice.all" class="md-primary" ng-click="toggleAll()">
+	</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.invoice.view" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.invoice.add" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.invoice.edit" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.invoice.cancel" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.invoice.delete" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Estimates</label></div>
+		<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="estimate.all" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div> -->
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.estimate.view" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.estimate.add" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.estimate.edit" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.estimate.cancel" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.estimate.delete" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Credit Notes</label></div>
+		<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="creditNotes.all" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.creditNotes.view" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.creditNotes.add" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.creditNotes.edit" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.creditNotes.cancel" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.creditNotes.delete" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Payments</label></div>
+		<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="payments.all" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.payments.view" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.payments.add" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.payments.edit" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.payments.cancel" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.payments.delete" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Expenses</label></div>
+		<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="expenses.all" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.expenses.view" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.expenses.add" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.expenses.edit" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.expenses.cancel" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.expenses.delete" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Products</label></div>
+		<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="product.all" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.product.view" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.product.add" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.product.edit" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.product.cancel" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.product.delete" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Inventory</label></div>
+		<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="inventory.all" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.inventory.view" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.inventory.add" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.inventory.edit" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.inventory.cancel" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.inventory.delete" class="md-primary">
+	</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Project</label></div>
+<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="project.all" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.project.view" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.project.add" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.project.edit" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.project.cancel" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.project.delete" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Contacts</label></div>
+	<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="contacts.all" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.contacts.view" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.contacts.add" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.contacts.edit" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.contacts.cancel" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.contacts.delete" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Reports</label></div>
+	<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="reports.all" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.reports.view" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.reports.add" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">add</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.reports.edit" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">edit</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.reports.cancel" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">cancel</md-tooltip></div>
+<div flex layout="row" layout-align="center center"><md-checkbox ng-model="vm.reports.delete" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">delete</md-tooltip></div>
+</div>
+</div>
+<md-divider></md-divider>
+<div layout layout-margin>
+	<div flex="20"><span>Other Functions</span></div>
+	<div flex layout="row" layout-align="center center"><span>Allow</span></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+</div>
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Dashboard</label></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.dashboard" class="md-primary">
+	</md-checkbox></div>
+	<!-- <div flex hide-sm> -->
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+</div>
+
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>360 View
+	</label></div>
+	<!-- <div flex layout="row" layout-align="center center"><md-checkbox  ng-model="view360.all" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">all</md-tooltip></div> -->
+<div flex layout="row" layout-align="center center"><md-checkbox  ng-model="vm.view360.view" class="md-primary">
+</md-checkbox><md-tooltip md-direction="top">view</md-tooltip></div>
+<div flex></div>
+<div flex></div>
+<div flex></div>
+<div flex></div>
+<div flex></div>
+</div>
+
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>File Manager</label></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.fileManager.view" class="md-primary">
+	</md-checkbox></div>
+	<!-- <div flex hide-sm> -->
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+</div>
+<div layout layout-margin>
+	<div flex="20" layout="row" layout-align="start center"><label>Settings</label></div>
+	<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.settings.view" class="md-primary">
+	</md-checkbox></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+	<div flex></div>
+</div>
+	<!-- <div layout layout-margin>
+		<div flex="20" layout="row" layout-align="start center"><label>Log Time</label></div>
+		<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="l" class="md-primary">
+		</md-checkbox></div>
+		<div flex hide-sm>
+		</div>
+	</div> -->
+	<div layout layout-margin>
+		<div flex="20" layout="row" layout-align="start center"><label>Customize</label></div>
+		<div flex layout="row" layout-align="center center"><md-checkbox md-no-ink ng-model="vm.customize" class="md-primary">
+		</md-checkbox></div>
+		<div flex layout="row" layout-align="center center"></div>
+		<div flex layout="row" layout-align="center center"></div>
+		<div flex layout="row" layout-align="center center"></div>
+		<div flex layout="row" layout-align="center center"></div>
+		<div flex layout="row" layout-align="center center"></div>
+	</div>
+</md-content>
+</form>
+</div>
+<div  class="dialogFooter pad_16" layout="row">
+	<span flex></span>
+	<md-button class="md-primary md-hue-3" ng-click="vm.cancel()" style="margin-right:20px;" >
+		Cancel
+	</md-button>
+	<md-button class="md-primary" ng-click="vm.submit()" ng-disabled="editForm.$invalid">
+		Add
+	</md-button>
+</div>
+</md-dialog>

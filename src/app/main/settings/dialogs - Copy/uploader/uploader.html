@@ -1,0 +1,29 @@
+<div id="settings" aria-label="uploader" layout="column" layout-align="center start"  >
+<md-toolbar class="tool-bar">
+    <div class="md-toolbar-tools" >
+     <h2>UPLOAD FILES</h2>
+     <span flex></span>
+     <md-button class="md-icon-button" ng-click="vm.closeDialog()">
+      <md-icon md-font-icon="icon-close"></md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
+<div class="content">
+<form name="testForm" layout="column">
+   <lf-ng-md-file-input name="files" lf-files="vm.files" lf-filesize="10MB" drag preview lf-mimetype="image/*" lf-required></lf-ng-md-file-input>
+     <div ng-messages="testForm.files.$error" style="color:red;">
+        <div ng-message="filesize">File size too large.</div>
+        <div ng-message="mimetype">Mimetype error.</div>
+    </div>  
+ </form>
+</div>
+
+<div class="footer pad_32" layout="row" layout-align="end end">
+  <div flex> </div>
+  <md-button class="md-primary"  md-autofocus flex="10" ng-click="vm.uploadItem()" style="border: 2px solid;" ng-disabled="testForm.$invalid">
+    Upload
+  </md-button> 
+</div>
+</div>
+

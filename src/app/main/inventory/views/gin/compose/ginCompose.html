@@ -1,0 +1,177 @@
+<div id="inventory" class="page-layout carded left-sidenav" layout="row">
+
+	<!-- CENTER -->
+	<div class="center" layout="column" flex>
+
+		<!-- CONTENT-CARD -->
+		<div class="content-card" layout="column" flex ms-scroll >
+		<div class="panel-body">
+
+			<!-- PRIMARY TOOLBAR -->
+			<div class="toolbar" layout="row" layout-align="space-between center">
+				<div layout="row" layout-align="start center">
+					<md-button class="md-icon-button close-thread" aria-label="Back"
+					ng-click="vm.toggleChildStates('app.contacts')">
+					<md-icon md-font-icon="icon-keyboard-backspace"></md-icon>
+				</md-button>
+
+				<div class="divider-vertical"></div>
+
+				<h2>Compose New Inventory</h2>
+			</div>
+			<div layout="row" layout-align="start center">
+
+			</div>
+		</div>
+		<!-- /PRIMARY TOOLBAR -->
+		<!-- WRAPPER -->
+
+		<div >
+		<div layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+			<div class="toolbarCompose" layout="row" layout-align="space-between center">
+				<div>Customer Name</div>
+			</div>								
+		</div>
+
+		<div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Company or Individual name</label>
+            <input ng-model="vm.contact.profileName">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input ng-model="vm.contact.email">
+          </md-input-container>
+        </div>
+
+        <div layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+			<div class="toolbarCompose" layout="row" layout-align="space-between center">
+				<div>Contact Person</div>
+			</div>								
+		</div>
+
+		<div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>First Name</label>
+            <input ng-model="vm.contact.firstName">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Last Name</label>
+            <input ng-model="vm.contact.lastName">
+          </md-input-container>
+        </div>
+
+        <div layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+			<div class="toolbarCompose" layout="row" layout-align="space-between center">
+				<div>Billing Address</div>
+			</div>								
+		</div>
+		<div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Street</label>
+            <input ng-model="vm.contact.billingAddress.street">
+          </md-input-container>
+        </div>
+
+		<div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>City</label>
+            <input ng-model="vm.contact.billingAddress.city">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>State</label>
+            <input ng-model="vm.contact.billingAddress.state">
+          </md-input-container>
+        </div>
+        <div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Zip Code</label>
+            <input ng-model="vm.contact.billingAddress.zip">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Country</label>
+            <input ng-model="theMax">
+          </md-input-container>
+        </div>
+
+         <div class="toolbarCompose" layout-gt-sm="row">
+         <md-switch ng-model="cb" ng-change="vm.onChange(cb)" aria-label="Switch 1">
+		    Use billing address as shipping address
+		 </md-switch>
+		 </div>
+
+		<div class="toolbarCompose" layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+			<div layout="row" layout-align="space-between center">
+				<div>Contact Information</div>
+			</div>								
+		</div>
+
+		<div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Phone</label>
+            <input ng-model="vm.contact.phone">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Mobile</label>
+            <input ng-model="vm.contact.mobile">
+          </md-input-container>
+        </div>
+       	<div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Fax</label>
+            <input ng-model="vm.contact.fax">
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Web Site</label>
+            <input ng-model="vm.contact.website">
+          </md-input-container>
+        </div>
+
+        <div class="toolbarCompose" layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+			<div layout="row" layout-align="space-between center">
+				<div>Optional Details</div>
+			</div>								
+		</div>
+
+		<div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Notes</label>
+            <input ng-model="vm.contact.notes">
+          </md-input-container>
+        </div>
+
+        <div class="toolbarCompose" layout="column" layout-gt-xs="row" style="background-color:#e0e0e0;height: 40px;">
+			<div layout="row" layout-align="space-between center">
+				<div>Additional Details</div>
+			</div>								
+		</div>
+
+		<div class="toolbarCompose" layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Age</label>
+            <input ng-model="vm.contact.nic">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>NIC</label>
+            <input ng-model="vm.contact.nic">
+          </md-input-container>
+        </div>
+		<div class="footersection" layout="row" layout-align="end center">
+			<md-button class="md-primary" style="border:2px solid">cancel</md-button>
+			<md-button class="md-accent" ng-click="vm.submit()" style="border:2px solid">save</md-button>
+		</div>
+
+</div>
+
+</div>
+		</div>
+		</div>
+		</div>

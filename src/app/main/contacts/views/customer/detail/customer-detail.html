@@ -1,0 +1,190 @@
+<div class="modern" layout="row" ng-init="vm.loadLegerData()">
+
+    <div class="contact-detail-container" ms-scroll>
+
+        <div class="detail-wrapper">
+            <div class="detail-header" layout="row" layout-align="space-between start">
+
+                <div class="ids" layout="column">
+                    <div layout="row" class="client" layout-align="start center">
+                       <div class="logo" layout="row" layout-align="center center">
+                            <!-- <img src="/assets/clientcompany/bonobopvtltd.png" width="156" height="156"> -->
+
+
+                            <img src="{{vm.companylogo}}" width="156" height="156">
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="detail">
+                            <div class="title">{{vm.companyName}}</div>
+                            <div class="address">{{vm.street}},{{vm.city}}</div>
+                            <div class="address">{{vm.state}},{{vm.country}}</div>
+                            <div ng-if="vm.contact.phone" class="phone"><span>Phone</span>:
+                                {{vm.phoneNo}}
+                            </div>
+                            <div ng-if="vm.contact.email" class="email">
+                                {{vm.adminEmail}}
+                            </div>
+                            <div ng-if="vm.contact.website" class="website"><span>Web</span>:
+                                {{vm.website}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               <!--  <table class="summary">
+                    <tr class="code">
+                        <td class="label">ACCOUNT STATEMENT</td>
+                    </tr>
+                </table>
+ -->
+                <table class="summary">
+                    <tr class="code">
+                        <td class="label">ACCOUNT</td>
+                        <td class="label">STATEMENT</td>
+                    </tr>
+                    <!-- <tr class="subcode">
+                        <td class="label">From 26 Nov, 2016 to 28 Nov, 2016</td>
+                    </tr> -->
+                    <tr>
+                        <td class="label">PERIOD</td>
+                        <td class="value">{{vm.dateFrom | date}}&nbsp;-&nbsp;{{vm.dateTo | date}}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">BALANCE DUE</td>
+                        <td class="value">{{vm.baseCurrency}}&nbsp;{{vm.balanceDue}}</td>
+                    </tr>
+                </table>
+        
+            </div>
+
+            <div class="detail-header" layout="row" layout-align="space-between start">
+
+                <div class="ids" layout="column">
+                    <div layout="row" class="client" layout-align="start center">
+                        <div class="logo" layout="row" layout-align="center center">
+                            <div>{{vm.contact.profileName[0] | uppercase}}</div>
+                        </div>
+
+
+
+                        
+
+
+
+                        <div class="divider"></div>
+
+                        <div class="detail">
+                            <div class="title">{{vm.contact.profileName}}</div>
+                            <div ng-if="vm.contact.billingAddress" class="address">{{vm.contact.billingAddress.street}},{{vm.contact.billingAddress.city}}</div>
+                            <div class="address">{{vm.contact.billingAddress.city}},{{vm.contact.billingAddress.country}}</div>
+                            <div ng-if="vm.contact.phone" class="phone"><span>Phone</span>:
+                                {{vm.contact.phone}}
+                            </div>
+                            <div ng-if="vm.contact.email" class="email">
+                                {{vm.contact.email}}
+                            </div>
+                            <div ng-if="vm.contact.website" class="website"><span>Web</span>:
+                                {{vm.contact.website}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="summary" style="padding-right: 144px;padding-top: 20px;">
+                    <tr>
+                        <td class="label">BALANCE B/F</td>
+                        <td class="value">{{vm.baseCurrency}}&nbsp;{{vm.balanceBF}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="label">INVOICES</td>
+                        <td class="value">{{vm.baseCurrency}}&nbsp;{{vm.invoices}}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">CREDITS</td>
+                        <td class="value">{{vm.baseCurrency}}&nbsp;{{vm.credits}}</td>
+                    </tr>
+                    <tr>
+                        <td class="label">PAYMENTS</td>
+                        <td class="value">{{vm.baseCurrency}}&nbsp;{{vm.payments}}</td>
+                    </tr>
+
+                </table>
+
+              
+        
+            </div>
+
+
+            <div >
+            <!-- class="detail-header" -->
+                <div class="ids" layout="column">
+                    <div layout="row" class="client" layout-align="start center">
+                  <div class="code" layout="row" layout-align="center center" style="padding: 20px;">
+                            <div class="label">Statement Date :&nbsp;</div>
+                            <div class="value">{{vm.dateFrom | date}}</div>
+                        </div>
+                        </div>
+                        </div>
+
+                
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="detail-content">
+                <table class="simple invoice-table">
+                    <thead class="tableHeader">
+                        <th>DATE</th>
+                        <th>DESCRIPTION</th>
+                        <th class="text-right">AMOUNT</th>
+                        <th class="text-right">BALANCE</th>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="items in vm.legerDetail">
+                            <td>
+                                {{items.createDate | date}}
+                            </td>
+                            <td> <a href="" ng-click="vm.invoicePaymentLink(items)">
+                                {{items.description}}
+                            </td>
+                            <td class="text-right">
+                                {{items.amount | currency:""}}&nbsp;
+                            </td>
+                            <td class="text-right">
+                                {{items.balance | currency:""}}&nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="simple invoice-table-footer">
+                    <tbody>
+                        <tr class="balancedue">
+                            <td>BALANCE DUE</td>
+                            <td>{{vm.baseCurrency}}&nbsp;{{vm.balanceDue}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+<!--             <div class="detail-footer">
+            </div> -->
+        </div>
+
+        <div class="page-break"></div>
+
+    </div>
+</div>
